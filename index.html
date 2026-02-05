@@ -3,67 +3,365 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>홈페이지 테스트</title>
+  <title>포트폴리오</title>
+  <meta name="description" content="개인 포트폴리오 웹사이트" />
 
   <style>
-    body {
-      margin: 0;
-      background: #ffffff;
+    :root{
+      --bg:#ffffff;
+      --text:#111111;
+      --muted:#666666;
+      --line:#e9e9e9;
+      --card:#fafafa;
+      --link:#111111;
+    }
+
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
-      color: #111;
-      line-height: 1.7;
+      line-height:1.7;
     }
+    a{color:var(--link); text-underline-offset: 3px;}
+    a:hover{opacity:.8;}
 
-    .container {
-      max-width: 800px;
+    .container{
+      max-width: 980px;
       margin: 0 auto;
-      padding: 80px 24px;
-      box-sizing: border-box;
+      padding: 64px 20px 96px;
     }
 
-    h1 {
-      margin: 0 0 12px 0;
-      font-size: 48px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
+    header{
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 28px;
     }
 
-    h2 {
-      margin: 0 0 48px 0;
-      font-size: 20px;
-      font-weight: 400;
-      color: #666;
+    .top{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
     }
 
-    .content {
+    .name{
+      font-size: 44px;
+      font-weight: 850;
+      letter-spacing: -0.03em;
+      margin: 0 0 8px 0;
+    }
+
+    .tagline{
+      margin: 0;
+      color: var(--muted);
       font-size: 16px;
-      color: #222;
     }
 
-    .content p {
-      margin: 0 0 16px 0;
+    .contact{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+      margin-top: 10px;
+    }
+
+    .pill{
+      display:inline-block;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      font-size: 13px;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+
+    nav{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top: 18px;
+    }
+
+    nav a{
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration:none;
+      padding: 6px 0;
+      border-bottom: 1px solid transparent;
+    }
+    nav a:hover{color:var(--text); border-bottom-color: var(--text);}
+
+    section{
+      padding: 34px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2{
+      font-size: 18px;
+      margin: 0 0 14px 0;
+      letter-spacing: -0.01em;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 860px){
+      .grid.two{grid-template-columns: 1fr 1fr;}
+    }
+
+    .card{
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .meta{
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .item-title{
+      display:flex;
+      gap:10px;
+      align-items:baseline;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin: 0 0 8px 0;
+    }
+
+    .item-title h3{
+      margin:0;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .item-title .when{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      white-space:nowrap;
+    }
+
+    ul{
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+    li{margin: 6px 0;}
+
+    .skills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top: 10px;
+    }
+    .chip{
+      border: 1px solid var(--line);
+      background:#fff;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+
+    footer{
+      padding-top: 26px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hint{
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 6px;
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <h1>안녕하세요</h1>
-    <h2>홈페이지 테스트 작업입니다</h2>
 
-    <!-- ▼▼▼ 여기부터 글만 수정해서 쓰면 됨 ▼▼▼ -->
-    <div class="content">
-      <p>국아 바이브 코딩 해야겠제?</p>
-      <p>HTML을 잘 몰라도 만들 수 있습니다 지피티가 한말임 </p>
-      <p>오늘 이거 만들어서 업로드 해라 ㅋㅋ</p>
+    <!-- ====== 헤더(여기만 바꾸면 전체 톤이 잡힘) ====== -->
+    <header>
+      <div class="top">
+        <div>
+          <h1 class="name">이름을 입력하세요</h1>
+          <p class="tagline">한 줄 소개를 입력하세요 (예: 임베디드/회로 설계/AI 프로젝트를 하는 전자공학 전공)</p>
+        </div>
 
-       <a href="index3.html">두 번째 페이지로 이동</a>
-    </div>
-    <!-- ▲▲▲ 여기까지만 수정 ▲▲▲ -->
+        <div class="contact">
+          <a class="pill" href="mailto:you@example.com">you@example.com</a>
+          <a class="pill" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+          <a class="pill" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="pill" href="#" target="_blank" rel="noopener">Resume(PDF)</a>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#about">소개</a>
+        <a href="#projects">프로젝트</a>
+        <a href="#skills">스킬</a>
+        <a href="#experience">경험</a>
+        <a href="#education">학력</a>
+        <a href="#contact">연락</a>
+      </nav>
+
+      <div class="hint">수정은 각 섹션의 카드 내용만 바꾸면 됨. 필요 없는 섹션은 통째로 삭제해도 됨.</div>
+    </header>
+
+    <!-- ====== 소개 ====== -->
+    <section id="about">
+      <h2>소개</h2>
+      <div class="card">
+        <p>
+          여기에는 5~8줄 정도로 본인 소개를 적으면 좋습니다.
+          어떤 분야를 좋아하는지, 어떤 프로젝트를 해왔는지, 어떤 역할을 잘하는지,
+          앞으로 어떤 방향을 목표로 하는지 등을 간단히.
+        </p>
+        <ul>
+          <li>강점 1: 예) 실험/검증 중심으로 문제를 끝까지 해결</li>
+          <li>강점 2: 예) 회로/임베디드/AI를 연동해서 구현</li>
+          <li>관심 분야: 예) 영상처리 가속, 센서 융합, 제어</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====== 프로젝트 ====== -->
+    <section id="projects">
+      <h2>프로젝트</h2>
+
+      <div class="grid two">
+        <div class="card">
+          <div class="item-title">
+            <h3>프로젝트 제목 1</h3>
+            <p class="when">기간: 2025.03 ~ 2025.06</p>
+          </div>
+          <div class="meta">역할: 예) 팀장 / 회로 설계 / 펌웨어 / 모델 학습</div>
+          <ul>
+            <li>문제: 어떤 문제를 해결했는지 1줄</li>
+            <li>해결: 어떤 방식으로 해결했는지 1~2줄</li>
+            <li>성과: 정량 지표/데모/수상/배포 링크 등</li>
+          </ul>
+          <div class="meta">
+            기술: C/C++, Python, Raspberry Pi, MCU, TensorFlow Lite 등
+          </div>
+          <div class="meta">
+            링크:
+            <a href="#" target="_blank" rel="noopener">GitHub</a> /
+            <a href="#" target="_blank" rel="noopener">Demo</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="item-title">
+            <h3>프로젝트 제목 2</h3>
+            <p class="when">기간: 2025.09 ~ 2025.12</p>
+          </div>
+          <div class="meta">역할: 예) 설계 / 구현 / 테스트</div>
+          <ul>
+            <li>핵심 구현: 예) 센서 데이터 수집 → 필터링 → 제어 루프 적용</li>
+            <li>이슈/해결: 예) 노이즈 문제를 하드웨어/소프트웨어로 분리 대응</li>
+            <li>결과: 예) 응답 속도 개선, 전력 절감, 정확도 향상</li>
+          </ul>
+          <div class="meta">
+            링크:
+            <a href="#" target="_blank" rel="noopener">GitHub</a> /
+            <a href="#" target="_blank" rel="noopener">Report</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint">프로젝트 카드는 복사/붙여넣기 해서 원하는 만큼 늘리면 됨.</div>
+    </section>
+
+    <!-- ====== 스킬 ====== -->
+    <section id="skills">
+      <h2>스킬</h2>
+      <div class="card">
+        <div class="meta">언어 / 툴 / 프레임워크 / 하드웨어 등을 적어두면 좋음</div>
+
+        <div class="skills">
+          <span class="chip">C/C++</span>
+          <span class="chip">Python</span>
+          <span class="chip">MATLAB</span>
+          <span class="chip">Verilog/VHDL</span>
+          <span class="chip">Raspberry Pi</span>
+          <span class="chip">MCU(Arduino/STM32)</span>
+          <span class="chip">Linux</span>
+          <span class="chip">Git</span>
+        </div>
+
+        <div class="hint">칩은 span 하나 복사해서 이름만 바꾸면 됨.</div>
+      </div>
+    </section>
+
+    <!-- ====== 경험 ====== -->
+    <section id="experience">
+      <h2>경험</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="item-title">
+            <h3>경험/활동 제목 (동아리/연구실/인턴/대회 등)</h3>
+            <p class="when">기간: 2025.01 ~ 2025.08</p>
+          </div>
+          <ul>
+            <li>무엇을 했는지 1</li>
+            <li>무엇을 했는지 2</li>
+            <li>성과/배운 점 1</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== 학력 ====== -->
+    <section id="education">
+      <h2>학력</h2>
+      <div class="card">
+        <div class="item-title">
+          <h3>학교/전공</h3>
+          <p class="when">기간: 2022 ~ 2026(예정)</p>
+        </div>
+        <ul>
+          <li>전공: 예) 전자정보통신공학</li>
+          <li>관심 과목: 예) 회로설계, 신호/시스템, 임베디드, 영상처리</li>
+          <li>관련 활동: 예) 캡스톤 디자인, 학술제, 프로젝트</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====== 연락 ====== -->
+    <section id="contact" style="border-bottom:none;">
+      <h2>연락</h2>
+      <div class="card">
+        <p>아래 정보 중 편한 걸로 연락 주세요.</p>
+        <ul>
+          <li>Email: <a href="mailto:you@example.com">you@example.com</a></li>
+          <li>GitHub: <a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></li>
+          <li>LinkedIn: <a href="https://www.linkedin.com/" target="_blank" rel="noopener">https://www.linkedin.com/</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      마지막 업데이트: <span id="updated"></span>
+    </footer>
+
   </div>
- 
 
+  <script>
+    // 하단 "마지막 업데이트" 자동 표시 (원하면 삭제해도 됨)
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    document.getElementById("updated").textContent = `${yyyy}-${mm}-${dd}`;
+  </script>
 </body>
 </html>
-
-
